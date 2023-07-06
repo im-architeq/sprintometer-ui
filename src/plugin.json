@@ -1,0 +1,30 @@
+{
+  "$schema": "https://raw.githubusercontent.com/grafana/grafana/master/docs/sources/developers/plugins/plugin.schema.json",
+  "autoEnabled": true,
+  "dependencies": {
+    "grafanaDependency": ">=10.0.0",
+    "plugins": []
+  },
+  "id": "sprintometer-app",
+  "info": {
+    "author": {
+      "name": "Sprintometer",
+      "url": "https://sprintometer.ch"
+    },
+    "description": "Plugin development for Grafana",
+    "keywords": [
+      "template"
+    ],
+    "links": [
+    ],
+    "logos": {
+      "large": "img/logo.svg",
+      "small": "img/logo.svg"
+    },
+    "screenshots": [],
+    "updated": "%TODAY%",
+    "version": "%VERSION%"
+  },
+  "name": "Sprintometer",
+  "type": "app"
+}
