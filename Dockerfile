@@ -43,6 +43,10 @@ COPY entrypoint.sh /
 ## Copy Provisioning
 COPY --chown=grafana:root provisioning $GF_PATHS_PROVISIONING
 
+## Copy Sankey Panel
+COPY plugins/architeq-sankey-panel /var/lib/grafana/plugins/architeq-sankey-panel
+
+
 ##################################################################
 ## Customization depends on the Grafana version
 ## May work or not work for the version different from the current
