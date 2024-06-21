@@ -6,7 +6,6 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    image: imarchiteq/sprintometer-ui:${dockertag:-latest}
     entrypoint: /run.sh
     ports:
       - 3000:3000/tcp
@@ -22,7 +21,6 @@ services:
     restart: always
     environment:
       - GRAFANA_HOST=host.docker.internal
-      - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=architeq-sankey-panel
     ports:
       - 80:80/tcp
       - 443:443/tcp

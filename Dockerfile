@@ -43,10 +43,6 @@ COPY entrypoint.sh /
 ## Copy Provisioning
 COPY --chown=grafana:root provisioning $GF_PATHS_PROVISIONING
 
-## Copy Sankey Panel
-COPY plugins/architeq-sankey-panel /var/lib/grafana/plugins/architeq-sankey-panel
-
-
 ##################################################################
 ## Customization depends on the Grafana version
 ## May work or not work for the version different from the current
@@ -58,8 +54,9 @@ USER root
 ## VISUAL
 ##################################################################
 
-## Replace Favicon
+## Replace Favicon and Apple Touch
 COPY img/fav32.png /usr/share/grafana/public/img
+COPY img/fav32.png /usr/share/grafana/public/img/apple-touch-icon.png
 
 ## Replace Logo
 COPY img/logo.svg /usr/share/grafana/public/img/grafana_icon.svg
@@ -112,6 +109,9 @@ RUN find /usr/share/grafana/public/build/ -name *.js -exec sed -i 's|({target:"_
 
 ## Remove New Version is available in the Footer
 RUN find /usr/share/grafana/public/build/ -name *.js -exec sed -i 's|({target:"_blank",id:"updateVersion",.*grafana_footer"})|()|g' {} \;
+
+## Remove Open Source icon
+RUN find /usr/share/grafana/public/build/ -name *.js -exec sed -i 's|.push({target:"_blank",id:"version",text:`${..edition}${.}`,url:..licenseUrl,icon:"external-link-alt"})||g' {} \;
 
 ##################################################################
 ## CLEANING Remove Native Data Sources
@@ -224,7 +224,16 @@ RUN rm -rf /usr/share/grafana/public/app/plugins/panel/table-old
 RUN rm -rf /usr/share/grafana/public/app/plugins/panel/traces
 
 ##################################################################
+## ADDING Architeq plugins
+##################################################################
 
+## Copy Sankey Panel
+COPY plugins/architeq-sankey-panel /var/lib/grafana/plugins/architeq-sankey-panel
+
+## Allow Loading Unsigned Plugins
+ENV GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=architeq-sankey-panel
+
+##################################################################
 USER grafana
 
 ## Entrypoint
