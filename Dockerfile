@@ -228,7 +228,7 @@ RUN rm -rf /usr/share/grafana/public/app/plugins/panel/traces
 ##################################################################
 
 ## Copy Sankey Panel
-COPY plugins/architeq-sankey-panel /var/lib/grafana/plugins/architeq-sankey-panel
+COPY --chown=grafana:root plugins/architeq-sankey-panel $GF_PATHS_PLUGINS/architeq-sankey-panel
 
 ## Allow Loading Unsigned Plugins
 ENV GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=architeq-sankey-panel
