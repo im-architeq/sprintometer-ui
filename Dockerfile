@@ -30,7 +30,7 @@ ENV GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboar
 
 ## Paths
 ENV GF_PATHS_PROVISIONING="/etc/grafana/provisioning"
-ENV GF_PATHS_PLUGINS="/var/lib/grafana/plugins"
+ENV GF_PATHS_PLUGINS="/var/lib/"
 
 ##################################################################
 ## COPY ARTIFACTS
